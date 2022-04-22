@@ -1,11 +1,11 @@
 ﻿namespace FsChessPgn
+#nowarn "44"
 
 open FsChess
 open System.IO
 open System.Text
 
 module Games =
-
     let ReadFromStream(stream : Stream) = 
         let sr = new StreamReader(stream)
         let db = RegParse.AllGamesRdr(sr)
