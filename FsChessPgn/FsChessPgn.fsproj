@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="FSharp.Data.DesignTime.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="FSharp.Data.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="imgs\Chess_bdd44.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -117,12 +123,16 @@
     <Compile Include="Games.fs" />
     <Compile Include="PgnWriter.fs" />
     <Compile Include="Stockfish.fs" />
+    <Compile Include="Leela.fs" />
+    <Compile Include="OpenExp.fs" />
+    <Compile Include="Best.fs" />
     <Compile Include="FsChess.fs" />
     <Compile Include="FsChess.Pgn.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="FSharp.Data" Version="4.2.8" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

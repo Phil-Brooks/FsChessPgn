@@ -170,8 +170,33 @@ module Game =
 
 module Stockfish =
 
-    ///Get best move for current Board and move number
+    ///Get best move for current Board and depth
     let GetBestMove = FsChessPgn.Stockfish.GetBestMove
+
+module Leela =
+
+    ///Set folder containing Leela
+    let SetFol = FsChessPgn.Leela.SetFol
+
+    ///Get best move for current Board and depth
+    let GetBestMove = FsChessPgn.Leela.GetBestMove
+
+module OpenExp =
+
+    ///Get list of moves for Board
+    let GetMoves = FsChessPgn.OpenExp.GetMoves
+
+module Best=
+
+    ///Get dictionary given location
+    let GetDict = FsChessPgn.Best.GetDict
+
+    ///Save dictionary given location
+    let SaveDict = FsChessPgn.Best.SaveDict
+
+    //Add to dictionary given fen, best move and list of responses
+    let Add =  FsChessPgn.Best.Add
+
 
 
 module Pretty =
