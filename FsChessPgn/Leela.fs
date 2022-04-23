@@ -67,6 +67,7 @@ module Leela =
             if not (e.Data = null || e.Data = "") then 
                 let msg = e.Data.ToString().Trim()
                 if msg.StartsWith("bestmove") then 
+                    System.Console.WriteLine(msg)
                     let bits = msg.Split([|' '|])
                     bmo <- (bits.[1]|>MoveUtil.fromUci cbd)|>Some
                     Stop()
