@@ -5,22 +5,27 @@ open System.IO
 
 module Best =
     type Bmresps = {BestMove:string;Replies:string[]}
+    ///load dictionary given array
+    let LoadDict(lns:string[]) = 
+        let mutable ans = Map.empty
+        let doln (ln:string) =
+            let bits = ln.Split([|'|'|])
+            let fen = bits.[0]
+            let bm = bits.[1]
+            let rs = if bits.[2]= "" then [||] else bits.[2].Split([|','|])
+            let bmrs = {BestMove=bm;Replies=rs}
+            ans <- ans.Add(fen,bmrs)
+        lns|>Array.iter doln
+        ans
+
     ///get dictionary given location
     let GetDict(fl:string) = 
-        let mutable ans = Map.empty
         if File.Exists(fl) then
-            let doln (ln:string) =
-                let bits = ln.Split([|'|'|])
-                let fen = bits.[0]
-                let bm = bits.[1]
-                let rs = if bits.[2]= "" then [||] else bits.[2].Split([|','|])
-                let bmrs = {BestMove=bm;Replies=rs}
-                ans <- ans.Add(fen,bmrs)
             let lns = File.ReadAllLines(fl)
-            lns|>Array.iter doln
-            ans
+            lns|>LoadDict
         else
-            ans
+            Map.empty
+
     ///save dictionary given location
     let SaveDict(fl:string, dct:Map<string,Bmresps>) =
         let toln k (v:Bmresps) =

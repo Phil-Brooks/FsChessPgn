@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Back.jpg" />
+    <EmbeddedResource Include="Images\BlackBishop.png" />
+    <EmbeddedResource Include="Images\BlackKing.png" />
+    <EmbeddedResource Include="Images\BlackKnight.png" />
+    <EmbeddedResource Include="Images\BlackPawn.png" />
+    <EmbeddedResource Include="Images\BlackQueen.png" />
+    <EmbeddedResource Include="Images\BlackRook.png" />
+    <EmbeddedResource Include="Images\down-32-red.png" />
+    <EmbeddedResource Include="Images\down-32-yell.png" />
+    <EmbeddedResource Include="Images\endButton.png" />
+    <EmbeddedResource Include="Images\homeButton.png" />
+    <EmbeddedResource Include="Images\new.png" />
+    <EmbeddedResource Include="Images\nextButton.png" />
+    <EmbeddedResource Include="Images\nextLineButton.png" />
+    <EmbeddedResource Include="Images\opn.png" />
+    <EmbeddedResource Include="Images\plus-minus-32.png" />
+    <EmbeddedResource Include="Images\prevButton.png" />
+    <EmbeddedResource Include="Images\prevLineButton.png" />
+    <EmbeddedResource Include="Images\sav.png" />
+    <EmbeddedResource Include="Images\sava.png" />
+    <EmbeddedResource Include="Images\up-32-red.png" />
+    <EmbeddedResource Include="Images\up-32-yell.png" />
+    <EmbeddedResource Include="Images\WhiteBishop.png" />
+    <EmbeddedResource Include="Images\WhiteKing.png" />
+    <EmbeddedResource Include="Images\WhiteKnight.png" />
+    <EmbeddedResource Include="Images\WhitePawn.png" />
+    <EmbeddedResource Include="Images\WhiteQueen.png" />
+    <EmbeddedResource Include="Images\WhiteRook.png" />
+    <Compile Include="Data.fs" />
+    <Compile Include="PnlBoard.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FsChessPgn\FsChessPgn.fsproj" />
+  </ItemGroup>
+
+</Project>

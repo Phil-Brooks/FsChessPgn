@@ -76,6 +76,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ShowStats", "Samples\ShowSt
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "PgnEditor", "Samples\PgnEditor\PgnEditor.fsproj", "{654AE05F-CAE1-42C1-901C-00A0C524A835}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BestWhite", "Samples\BestWhite\BestWhite.fsproj", "{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{654AE05F-CAE1-42C1-901C-00A0C524A835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{654AE05F-CAE1-42C1-901C-00A0C524A835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{654AE05F-CAE1-42C1-901C-00A0C524A835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{93499266-C3AB-4BDB-85A6-A58708D33514} = {7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}
 		{435AE2A3-B0C0-44C9-A63F-0397EE1724AE} = {7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}
 		{654AE05F-CAE1-42C1-901C-00A0C524A835} = {7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}
+		{100F38DA-29FC-44DC-AACB-94E3AD3BEEAF} = {7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EFBBF18-81E9-4F01-A431-E58B2EB70F3E}

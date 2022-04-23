@@ -188,6 +188,9 @@ module OpenExp =
 
 module Best=
 
+    ///load dictionary given array
+    let LoadDict = FsChessPgn.Best.LoadDict 
+
     ///Get dictionary given location
     let GetDict = FsChessPgn.Best.GetDict
 

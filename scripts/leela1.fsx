@@ -1,6 +1,7 @@
 #load "setup.fsx"
 open FsChess
 open FsChess.Pgn
+open System.IO
 
 let bestdictfl = @"D:\lc0\lc0white10.txt"
 let dct = Best.GetDict(bestdictfl)
@@ -26,3 +27,9 @@ else
     //iterate through keys filling blanks
     let ndct = Best.Expand(dct, depth)
     Best.SaveDict(bestdictfl,ndct)
+    //write as code
+    let lines = File.ReadAllLines(bestdictfl)
+    let codelines =
+        lines
+        |>Array.map (fun l -> "        \"" + l + "\"")
+    File.WriteAllLines(bestdictfl+".fs",codelines)
