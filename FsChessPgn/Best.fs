@@ -13,7 +13,7 @@ module Best =
                 let bits = ln.Split([|'|'|])
                 let fen = bits.[0]
                 let bm = bits.[1]
-                let rs = bits.[2].Split([|','|])
+                let rs = if bits.[2]= "" then [||] else bits.[2].Split([|','|])
                 let bmrs = {BestMove=bm;Replies=rs}
                 ans <- ans.Add(fen,bmrs)
             let lns = File.ReadAllLines(fl)
@@ -25,7 +25,7 @@ module Best =
     let SaveDict(fl:string, dct:Map<string,Bmresps>) =
         let toln k (v:Bmresps) =
             k + "|" + v.BestMove + "|" + 
-            (v.Replies|>Array.reduce(fun a b -> a + "," + b))
+            (if v.Replies.Length=0 then "" else v.Replies|>Array.reduce(fun a b -> a + "," + b))
         let lns = dct|>Seq.map(fun (KeyValue(k,v)) -> toln k v)|>Seq.toArray
         File.WriteAllLines(fl,lns)
 
@@ -36,9 +36,9 @@ module Best =
         else dct
     
     ///Expand for one move given dictionary,board, depth and move
-    let ExpandMove(dct:Map<string,Bmresps>, nbd:Brd, depth:int) (mvstr:string) =
-        let mv = mvstr|>MoveUtil.fromSAN nbd
-        let bd = nbd|>Board.MoveApply mv
+    let ExpandMove(dct:Map<string,Bmresps>, inbd:Brd, depth:int) (mvstr:string) =
+        let mv = mvstr|>MoveUtil.fromSAN inbd
+        let bd = inbd|>Board.MoveApply mv
         //need to only process if not already in dct
         let fen = bd|>Board.ToStr
         if dct.ContainsKey fen then dct
@@ -67,10 +67,10 @@ module Best =
     ///Expand all given dictionary and depth
     let Expand(dct:Map<string,Bmresps>, depth:int) =
         let rec expall idct (kvl:System.Collections.Generic.KeyValuePair<string,Bmresps> list) =
-            if List.isEmpty kvl then idct
+            if kvl.IsEmpty then idct
             else
                 let kv = kvl.Head
-                let odct = ExpandKey(dct,depth) kv
+                let odct = ExpandKey(idct,depth) kv
                 expall odct kvl.Tail
         let kvl = dct|>Seq.toList
         expall dct kvl
