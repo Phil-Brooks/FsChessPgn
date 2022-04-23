@@ -194,9 +194,17 @@ module Best=
     ///Save dictionary given location
     let SaveDict = FsChessPgn.Best.SaveDict
 
-    //Add to dictionary given fen, best move and list of responses
+    ///Add to dictionary given dictionary, fen, best move and list of responses
     let Add =  FsChessPgn.Best.Add
 
+    ///Expand for one move given dictionary,board, depth and move
+    let ExpandMove =  FsChessPgn.Best.ExpandMove
+
+    ///Expand for one key given dictionary, depth and key value
+    let ExpandKey =  FsChessPgn.Best.ExpandKey
+
+    ///Expand all given dictionary and depth
+    let Expand = FsChessPgn.Best.Expand
 
 
 module Pretty =

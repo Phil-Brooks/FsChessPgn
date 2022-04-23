@@ -66,12 +66,10 @@ module Leela =
         let pOut (e : System.Diagnostics.DataReceivedEventArgs) = 
             if not (e.Data = null || e.Data = "") then 
                 let msg = e.Data.ToString().Trim()
-                if not (msg.StartsWith("info") && not (msg.Contains(" cp "))) then 
-                    System.Console.WriteLine(msg)
-                    if msg.StartsWith("bestmove") then 
-                        let bits = msg.Split([|' '|])
-                        bmo <- (bits.[1]|>MoveUtil.fromUci cbd)|>Some
-                        Stop()
+                if msg.StartsWith("bestmove") then 
+                    let bits = msg.Split([|' '|])
+                    bmo <- (bits.[1]|>MoveUtil.fromUci cbd)|>Some
+                    Stop()
         prc.OutputDataReceived.Add(pOut)
         //Start process
         SetUpPrc()
