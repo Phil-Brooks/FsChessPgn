@@ -39,12 +39,15 @@ module Best =
     let ExpandMove(dct:Map<string,Bmresps>, nbd:Brd, depth:int) (mvstr:string) =
         let mv = mvstr|>MoveUtil.fromSAN nbd
         let bd = nbd|>Board.MoveApply mv
-        let bm = Leela.GetBestMove(bd,depth)
-        let nbd = bd|>Board.MoveApply bm
+        //need to only process if not already in dct
         let fen = bd|>Board.ToStr
-        let bmstr = bm|>MoveUtil.toPgn bd
-        let sans = OpenExp.GetMoves(nbd)
-        Add(dct,fen,bmstr,sans)
+        if dct.ContainsKey fen then dct
+        else
+            let bm = Leela.GetBestMove(bd,depth)
+            let nbd = bd|>Board.MoveApply bm
+            let bmstr = bm|>MoveUtil.toPgn bd
+            let sans = OpenExp.GetMoves(nbd)
+            Add(dct,fen,bmstr,sans)
 
     ///Expand for one key given dictionary, depth and key value
     let ExpandKey(dct:Map<string,Bmresps>, depth:int) (kv:System.Collections.Generic.KeyValuePair<string,Bmresps>)=
