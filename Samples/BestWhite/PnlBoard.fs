@@ -107,7 +107,8 @@ module Library1 =
                                             Color.Green
                                         else Color.PaleGreen)
              
-            sqs.[sqTo].BackColor <- if (sqTo % 8 + sqTo / 8) % 2 = 1 then 
+            if sqTo<> -1 then 
+                sqs.[sqTo].BackColor <- if (sqTo % 8 + sqTo / 8) % 2 = 1 then 
                                             Color.YellowGreen
                                         else Color.Yellow
 
@@ -169,6 +170,8 @@ module Library1 =
         ///Sets the Board to be displayed
         member bd.SetBoard(ibd:Brd) =
             board<-ibd
+            sqTo <- -1
+            highlightsqs ()
             setpcsmvs()
 
         ///Orients the Board depending on whether White

@@ -24,6 +24,8 @@ module Main =
         let mutable resps = bmrs.Replies
         let rslv = new ListBox(Top = 440, Left = 36, Width=330, DataSource=resps, Height=200)
         let bkbtn = new Button(Text="Back", Left=36, Top=660)
+        let fenbtn = new Button(Text="Copy FEN", Left=115, Top=660)
+        let pgnbtn = new Button(Text="Copy PGN", Left=195, Top=660)
 
         let lblClick() =
             bd.DoMove bmstr
@@ -47,19 +49,51 @@ module Main =
             bmlbl.Text <- bmstr
             rslv.DataSource <- resps
 
-        let bkclk() =
-            if not (gm.MoveText.Length>1) then
+        let bkClick() =
+            if (gm.MoveText.Length>1) then
+                gm <- gm|>Game.GetaMoves
                 gm <- gm|>Game.Pop|>Game.Pop
+                if gm.MoveText.Length=0 then 
+                    board<-Board.Start
+                    bd.SetBoard(board)
+                else
+                    let mte = gm.MoveText.[gm.MoveText.Length-1]
+                    match mte with
+                    |HalfMoveEntry(_,_,_,amv) ->
+                        if amv.IsNone then failwith "should have valid aMove"
+                        else
+                            board <- amv.Value.PostBrd
+                            bd.SetBoard(amv.Value.PreBrd)
+                            bd.DoMove(amv.Value.Mv|>Move.ToSan amv.Value.PreBrd)
+                    |_ -> failwith "should have valid HalfMove"
+                let fen = board|>Board.ToStr
+                let bmrs = dct.[fen]
+                bmstr <- bmrs.BestMove
+                bmlbl.Text <- bmstr
+                resps <- bmrs.Replies
+                rslv.DataSource <- resps
+
+        let fenClick() =
+            let fen = board|>Board.ToStr
+            Clipboard.SetText(fen)
+
+        let pgnClick() =
+            let pgn = FsChessPgn.PgnWrite.GameStr(gm)
+            Clipboard.SetText(pgn)
 
         do
             bd|>this.Controls.Add
             bmlbl|>this.Controls.Add
             rslv|>this.Controls.Add
             bkbtn|>this.Controls.Add
+            fenbtn|>this.Controls.Add
+            pgnbtn|>this.Controls.Add
             //events
             bmlbl.Click.Add(fun _ -> lblClick())
             rslv.Click.Add(fun _ -> lvClick())
             bkbtn.Click.Add(fun _ -> bkClick())
+            fenbtn.Click.Add(fun _ -> fenClick())
+            pgnbtn.Click.Add(fun _ -> pgnClick())
     
     let frm = new FrmMain()
     
