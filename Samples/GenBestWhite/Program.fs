@@ -1,34 +1,25 @@
 ﻿open FsChess
-open FsChess.Pgn
 open System.IO
 
-let bestdictfl = @"D:\lc0\lc0white10.txt"
-let dct = Best.GetDict(bestdictfl)
+let splitfol = @"D:\lc0\lc0white10_split"
 let depth = 10
-
 Leela.SetFol(@"D:\lc0")
 
-let initialise() =
-    let bd = Board.Start
-    let bm = Leela.GetBestMove(bd,depth)
+let outfol = Path.Combine(splitfol,"out")
+Directory.CreateDirectory(outfol)|>ignore
 
-    let nbd = bd|>Board.Push bm
+let rec expfls (fnl:string list) =
+    if not fnl.IsEmpty then
+        let fn = fnl.Head
+        let outfn = Path.Combine(outfol,Path.GetFileName(fn))
+        let dct = Best.GetDict(fn)
+        //iterate through keys filling blanks
+        printfn "Processing file: %s" fn
+        let ndct = Best.Expand(dct, depth)
+        Best.SaveDict(outfn,ndct)
+        File.Delete(fn)
+        expfls fnl.Tail
 
-    let fen = bd|>Board.ToStr
-    let bmstr = bm|>Move.ToSan bd
-    let sans = OpenExp.GetMoves(nbd)
-
-    let ndct = Best.Add(dct,fen,bmstr,sans)
-    Best.SaveDict(bestdictfl,dct)
-
-if dct.Count=0 then initialise()
-else
-    //iterate through keys filling blanks
-    let ndct = Best.Expand(dct, depth)
-    Best.SaveDict(bestdictfl,ndct)
-    //write as code
-    let lines = File.ReadAllLines(bestdictfl)
-    let codelines =
-        lines
-        |>Array.map (fun l -> "        \"" + l + "\"")
-    File.WriteAllLines(bestdictfl+".fs",codelines)
+let files = Directory.GetFiles(splitfol)
+let fnl = files|>List.ofArray
+expfls fnl
