@@ -99,18 +99,17 @@ module Library1 =
                 with _ -> ()
             else ori()
 
-        ///highlight possible squares
-        let highlightsqs sl =
+        ///highlight squares
+        let highlightsqs () =
             sqs
             |> Array.iteri (fun i sq -> 
                    sqs.[i].BackColor <- if (i % 8 + i / 8) % 2 = 1 then 
                                             Color.Green
                                         else Color.PaleGreen)
-            sl
-            |> List.iter (fun s -> 
-                   sqs.[s].BackColor <- if (s % 8 + s / 8) % 2 = 1 then 
+             
+            sqs.[sqTo].BackColor <- if (sqTo % 8 + sqTo / 8) % 2 = 1 then 
                                             Color.YellowGreen
-                                        else Color.Yellow)
+                                        else Color.Yellow
 
         /// creates file label
         let flbl i lbli =
@@ -180,13 +179,8 @@ module Library1 =
         member bd.DoMove(san:string) =
             let mv = san|>Move.FromSan board
             board <- board|>Board.Push mv
+            sqTo <- mv|>Move.To|>int
+            highlightsqs ()
             setpcsmvs()
-            mv|>mvEvt.Trigger
-            board|>bdEvt.Trigger
 
 
-        //publish
-        ///Provides the Move made on the board
-        member __.MvMade = mvEvt.Publish
-        ///Provides the New Board after a move
-        member __.BdChng = bdEvt.Publish
