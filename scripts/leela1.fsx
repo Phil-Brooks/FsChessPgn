@@ -4,7 +4,7 @@ open FsChess.Pgn
 open System.IO
 
 //let bestdictfl = @"D:\lc0\lc0white10.txt"
-let bestdictfl = @"D:\lc0\lc0white10_split\109.txt"
+let bestdictfl = @"D:\lc0\lc0white10_split\184.txt"
 let dct = Best.GetDict(bestdictfl)
 let depth = 10
 
