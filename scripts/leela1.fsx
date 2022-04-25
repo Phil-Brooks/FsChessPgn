@@ -27,9 +27,3 @@ else
     //iterate through keys filling blanks
     let ndct = Best.Expand(dct, depth)
     Best.SaveDict(bestdictfl,ndct)
-    //write as code
-    let lines = File.ReadAllLines(bestdictfl)
-    let codelines =
-        lines
-        |>Array.map (fun l -> "        \"" + l + "\"")
-    File.WriteAllLines(bestdictfl+".fs",codelines)
