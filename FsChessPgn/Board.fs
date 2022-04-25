@@ -134,11 +134,11 @@ module Board =
         
         let bd = 
             if bd.CastleRights <> CstlFlgs.EMPTY then 
-                if mfrom = H1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort}
-                elif mfrom = A1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteLong}
+                if mfrom = H1||mto = H1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort}
+                elif mfrom = A1||mto = A1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteLong}
                 elif piece = Piece.WKing then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort &&& ~~~CstlFlgs.WhiteLong}
-                elif mfrom = H8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort}
-                elif mfrom = A8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackLong}
+                elif mfrom = H8||mto = H8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort}
+                elif mfrom = A8||mto = A8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackLong}
                 elif piece = Piece.BKing then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort &&& ~~~CstlFlgs.BlackLong}
                 else bd
             else bd

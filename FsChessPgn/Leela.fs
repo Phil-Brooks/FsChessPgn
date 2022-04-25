@@ -66,6 +66,7 @@ module Leela =
         let pOut (e : System.Diagnostics.DataReceivedEventArgs) = 
             if not (e.Data = null || e.Data = "") then 
                 let msg = e.Data.ToString().Trim()
+                //printfn "Message: %s" msg
                 if msg.StartsWith("bestmove") then 
                     //System.Console.WriteLine(msg)
                     let bits = msg.Split([|' '|])
