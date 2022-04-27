@@ -19,15 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{19D9
 		scripts\index8.fsx = scripts\index8.fsx
 		scripts\index9.fsx = scripts\index9.fsx
 		scripts\leela1.fsx = scripts\leela1.fsx
-		merge.fsx = merge.fsx
+		scripts\merge.fsx = scripts\merge.fsx
 		scripts\Pgn1.fsx = scripts\Pgn1.fsx
 		scripts\Pgn2.fsx = scripts\Pgn2.fsx
 		scripts\Pgn3.fsx = scripts\Pgn3.fsx
 		scripts\Pgn4.fsx = scripts\Pgn4.fsx
 		scripts\setup.fsx = scripts\setup.fsx
 		scripts\sf1.fsx = scripts\sf1.fsx
-		split.fsx = split.fsx
-		tocode.fsx = tocode.fsx
+		scripts\split.fsx = scripts\split.fsx
+		scripts\tocode.fsx = scripts\tocode.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}"
