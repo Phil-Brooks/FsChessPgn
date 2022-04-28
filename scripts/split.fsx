@@ -1,6 +1,5 @@
 #load "setup.fsx"
 open FsChess
-open FsChess.Pgn
 open System.IO
 
 let bestdictfl = @"D:\lc0\lc0white10.txt"
