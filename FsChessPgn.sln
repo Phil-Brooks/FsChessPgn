@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{19D9
 		scripts\sf1.fsx = scripts\sf1.fsx
 		scripts\split.fsx = scripts\split.fsx
 		scripts\tocode.fsx = scripts\tocode.fsx
+		scripts\tocodekt.fsx = scripts\tocodekt.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7E12609F-0CE8-4BF7-8734-AA0E4FC38DEC}"
