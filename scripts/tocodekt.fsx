@@ -2,13 +2,13 @@
 open FsChess
 open System.IO
 
-//let bestdictfl = @"D:\lc0\lc0white10.txt"
-let bestdictfl = @"D:\lc0\lc0white10 - Copy.txt"
-let codefl = @"D:\lc0\ChessData.kt"
+let bestdictfl = @"D:\lc0\lc0white10.txt"
+//let bestdictfl = @"D:\lc0\lc0white10 - Copy.txt"
+let codefl1 = @"D:\lc0\ChessData1.kt"
+let codefl2 = @"D:\lc0\ChessData2.kt"
 
 let lines = File.ReadAllLines(bestdictfl)
 let dct = Best.LoadDict(lines)
-
 
 let tocod (kv:string*FsChessPgn.Best.Bmresps) =
     let fen,bmrs = kv
@@ -32,11 +32,18 @@ let arrlines =
     kva
     |>Array.map tocod
 
-let start =
+let start1 =
     [|
     "package com.example.bestwhiteand"
     ""
-    "class ChessData(){"
+    "class ChessData1(){"
+    "    val lines = arrayOf("
+    |]
+let start2 =
+    [|
+    "package com.example.bestwhiteand"
+    ""
+    "class ChessData2(){"
     "    val lines = arrayOf("
     |]
 let nd = 
@@ -44,5 +51,12 @@ let nd =
     "    )"
     "}"
     |]
-let codelines = Array.append start (Array.append arrlines nd)
-File.WriteAllLines(codefl,codelines)
+
+let mid = arrlines.Length/2
+let arrlines1 = arrlines.[0..mid-1]
+let arrlines2 = arrlines.[mid..]
+
+let codelines1 = Array.append start1 (Array.append arrlines1 nd)
+File.WriteAllLines(codefl1,codelines1)
+let codelines2 = Array.append start2 (Array.append arrlines2 nd)
+File.WriteAllLines(codefl2,codelines2)
