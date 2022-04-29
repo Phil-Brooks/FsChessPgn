@@ -21,7 +21,7 @@ let initialise() =
     let sans = OpenExp.GetMoves(nbd)
 
     let ndct = Best.Add(dct,fen,bmstr,sans)
-    Best.SaveDict(bestdictfl,dct)
+    Best.SaveDict(bestdictfl,ndct)
 
 if dct.Count=0 then initialise()
 else

@@ -61,8 +61,11 @@ module Best =
         //printfn "Fen: %s" fen
 
         let bd = fen|>Board.FromStr
-        let bm = bmrs.BestMove|>MoveUtil.fromSAN bd
-        let nbd = bd|>Board.MoveApply bm
+        let nbd = 
+            if bmrs.BestMove = "" then bd
+            else
+                let bm = bmrs.BestMove|>MoveUtil.fromSAN bd
+                bd|>Board.MoveApply bm
         let rec expmvs idct (rl:string list) =
             if rl.IsEmpty then idct
             else
