@@ -57,6 +57,9 @@ module Best =
     ///Expand for one key given dictionary, depth and key value
     let ExpandKey(dct:Map<string,Bmresps>, depth:int) (kv:System.Collections.Generic.KeyValuePair<string,Bmresps>)=
         let fen,bmrs = kv|>fun (KeyValue(k,v)) -> k,v
+        
+        //printfn "Fen: %s" fen
+
         let bd = fen|>Board.FromStr
         let bm = bmrs.BestMove|>MoveUtil.fromSAN bd
         let nbd = bd|>Board.MoveApply bm
@@ -64,6 +67,9 @@ module Best =
             if rl.IsEmpty then idct
             else
                 let r = rl.Head
+
+                //printfn "Resp: %s" r
+
                 let odct = ExpandMove(idct,nbd,depth) r
                 expmvs odct (rl.Tail)
 

@@ -23,6 +23,15 @@ type BoardTest()=
         Assert.AreEqual("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",str)
 
     [<TestMethod>]
+    member this.Board_MoveApply2() =
+        //test for failing castle rights
+        let brd = Board.FromStr "rnbqkbnr/4pppp/8/1p6/2pPP3/8/1P3PPP/R1BQKBNR w KQkq - 0 8"
+        let san = "Rxa8"
+        let brd2 = brd|>Board.PushSAN san
+        let str = brd2|>Board.ToStr
+        Assert.AreEqual("Rnbqkbnr/4pppp/8/1p6/2pPP3/8/1P3PPP/2BQKBNR b Kk - 0 8",str)
+
+    [<TestMethod>]
     member this.Board_IsCheck() =
         let ic = brd1|>Board.IsChk
         let ic2 = brd1|>Board.IsChck Player.White

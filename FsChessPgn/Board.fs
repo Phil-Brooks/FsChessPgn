@@ -132,14 +132,29 @@ module Board =
                 else bd |> PieceMove A8 D8
             else bd
         
+        //king moves
         let bd = 
             if bd.CastleRights <> CstlFlgs.EMPTY then 
-                if mfrom = H1||mto = H1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort}
-                elif mfrom = A1||mto = A1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteLong}
-                elif piece = Piece.WKing then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort &&& ~~~CstlFlgs.WhiteLong}
-                elif mfrom = H8||mto = H8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort}
-                elif mfrom = A8||mto = A8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackLong}
+                if piece = Piece.WKing then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort &&& ~~~CstlFlgs.WhiteLong}
                 elif piece = Piece.BKing then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort &&& ~~~CstlFlgs.BlackLong}
+                else bd
+            else bd
+        //mfrom
+        let bd = 
+            if bd.CastleRights <> CstlFlgs.EMPTY then 
+                if mfrom = H1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort}
+                elif mfrom = A1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteLong}
+                elif mfrom = H8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort}
+                elif mfrom = A8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackLong}
+                else bd
+            else bd
+        //mto
+        let bd = 
+            if bd.CastleRights <> CstlFlgs.EMPTY then 
+                if mto = H1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteShort}
+                elif mto = A1 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.WhiteLong}
+                elif mto = H8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackShort}
+                elif mto = A8 then { bd with CastleRights = bd.CastleRights &&& ~~~CstlFlgs.BlackLong}
                 else bd
             else bd
         
