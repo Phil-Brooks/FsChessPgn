@@ -1,10 +1,8 @@
 #load "setup.fsx"
 open FsChess
-open FsChess.Pgn
-open System.IO
 
-//let bestdictfl = @"D:\lc0\lc0white10.txt"
-let bestdictfl = @"D:\lc0\lc0white10_split\308.txt"
+let bestdictfl = @"D:\lc0\lc0white10.txt"
+//let bestdictfl = @"D:\lc0\lc0white10_split\308.txt"
 let dct = Best.GetDict(bestdictfl)
 let depth = 10
 
@@ -27,5 +25,5 @@ if dct.Count=0 then initialise()
 else
     //iterate through keys filling blanks
     let ndct = Best.Expand(dct, depth)
-    //Best.SaveDict(bestdictfl,ndct)
+    Best.SaveDict(bestdictfl,ndct)
     ()
