@@ -33,14 +33,14 @@ let arrlines =
 
 let start1 =
     [|
-    "package com.example.bestwhiteand"
+    "package com.example.bestblackand"
     ""
     "class ChessData1(){"
     "    val lines = arrayOf("
     |]
 let start2 =
     [|
-    "package com.example.bestwhiteand"
+    "package com.example.bestblackand"
     ""
     "class ChessData2(){"
     "    val lines = arrayOf("
