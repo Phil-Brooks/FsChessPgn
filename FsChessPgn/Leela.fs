@@ -20,7 +20,7 @@ module Leela =
         Send("position startpos")
         Send("position fen " + fen + " ")
         Send("go depth " + depth.ToString())
-        prc.WaitForExit()
+        prc.WaitForExit(60000)
     
     ///set up process
     let SetUpPrc () = 
@@ -67,20 +67,35 @@ module Leela =
             if not (e.Data = null || e.Data = "") then 
                 let msg = e.Data.ToString().Trim()
 
-                //printfn "Message: %s" msg
+                //printfn "Message: %s" msg 
                 
                 if msg.StartsWith("bestmove") then 
+                    
+                    //printfn "Message: %s" msg
+
                     let bits = msg.Split([|' '|])
                     bmo <- (bits.[1]|>MoveUtil.fromUci cbd)|>Some
                     Stop()
+                elif msg.StartsWith("info") then
+                    let st = msg.LastIndexOf("pv")
+                    let ucis = msg.Substring(st+2)
+                    let bits = ucis.Trim().Split([|' '|])
+                    bmo <- bits.[0]|>MoveUtil.fromUci cbd|>Some
+                    //printfn "Best: %s" bits.[0]
+
         prc.OutputDataReceived.Add(pOut)
         //Start process
         SetUpPrc()
         // call calcs
         // need to send game position moves as UCI
         let fen = cbd|>Board.ToStr
-        ComputeAnswer(fen, dpth)
-        if bmo.IsSome then bmo.Value
+        ComputeAnswer(fen, dpth)|>ignore
+        Stop()
+
+        if bmo.IsSome then 
+            //printfn "Final Best: %s" (bmo.Value|>MoveUtil.toPgn cbd)
+            
+            bmo.Value
         else failwith ("NO BEST MOVE FOUND")
 
 
