@@ -5,6 +5,7 @@ open System.IO
 let bestdictfl = @"D:\lc0\lc0black10.txt"
 let codefl1 = @"D:\lc0\ChessData1.kt"
 let codefl2 = @"D:\lc0\ChessData2.kt"
+let codefl3 = @"D:\lc0\ChessData3.kt"
 
 let lines = File.ReadAllLines(bestdictfl)
 let dct = Best.LoadDict(lines)
@@ -45,17 +46,28 @@ let start2 =
     "class ChessData2(){"
     "    val lines = arrayOf("
     |]
+let start3 =
+    [|
+    "package com.example.bestblackand"
+    ""
+    "class ChessData3(){"
+    "    val lines = arrayOf("
+    |]
 let nd = 
     [|
     "    )"
     "}"
     |]
 
-let mid = arrlines.Length/2
+let mid = arrlines.Length/3
+let mid2 = 2*mid
 let arrlines1 = arrlines.[0..mid-1]
-let arrlines2 = arrlines.[mid..]
+let arrlines2 = arrlines.[mid..mid2-1]
+let arrlines3 = arrlines.[mid2..]
 
 let codelines1 = Array.append start1 (Array.append arrlines1 nd)
 File.WriteAllLines(codefl1,codelines1)
 let codelines2 = Array.append start2 (Array.append arrlines2 nd)
 File.WriteAllLines(codefl2,codelines2)
+let codelines3 = Array.append start3 (Array.append arrlines3 nd)
+File.WriteAllLines(codefl3,codelines3)
