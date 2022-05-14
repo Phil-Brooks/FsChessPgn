@@ -88,3 +88,14 @@ module Best =
                 expall odct kvl.Tail
         let kvl = dct|>Seq.toList
         expall dct kvl
+
+    ///Add for one fen given dictionary, depth and fen
+    let AddFen(dct:Map<string,Bmresps>, depth:int) (fen:string) =
+        if dct.ContainsKey fen then dct
+        else
+            let bd = fen|>Board.FromStr
+            let bm = Leela.GetBestMove(bd,depth)
+            let nbd = bd|>Board.MoveApply bm
+            let bmstr = bm|>MoveUtil.toPgn bd
+            let sans = OpenExp.GetMoves(nbd)
+            Add(dct,fen,bmstr,sans)

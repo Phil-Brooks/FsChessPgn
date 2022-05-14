@@ -209,6 +209,9 @@ module Best=
     ///Expand all given dictionary and depth
     let Expand = FsChessPgn.Best.Expand
 
+    ///Add for one fen given dictionary, depth and fen
+    let AddFen = FsChessPgn.Best.AddFen
+
 
 module Pretty =
 
