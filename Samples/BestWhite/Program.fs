@@ -3,6 +3,7 @@
 open System
 open System.Windows.Forms
 open System.Drawing
+open System.IO
 open FsChess
 
 
@@ -26,6 +27,8 @@ module Main =
         let bkbtn = new Button(Text="Back", Left=36, Top=660)
         let fenbtn = new Button(Text="Copy FEN", Left=115, Top=660)
         let pgnbtn = new Button(Text="Copy PGN", Left=195, Top=660)
+        let addbtn = new Button(Text="+", Left=275, Top=660, Width=25)
+
 
         let lblClick() =
             bd.DoMove bmstr
@@ -81,6 +84,15 @@ module Main =
             let pgn = FsChessPgn.PgnWrite.GameStr(gm)
             Clipboard.SetText(pgn)
 
+        let addClick() =
+            if bmstr <> "NOT DONE" then
+                MessageBox.Show("Can only add missing positions!","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning)|>ignore
+            else
+                let fen = board|>Board.ToStr
+                let addfl = @"D:\lc0\lc0white10_add.txt"
+                File.AppendAllText(addfl,fen + System.Environment.NewLine)
+                MessageBox.Show("Position added to : " + addfl,"Add Position",MessageBoxButtons.OK,MessageBoxIcon.Information)|>ignore
+        
         do
             bd|>this.Controls.Add
             bmlbl|>this.Controls.Add
@@ -88,12 +100,14 @@ module Main =
             bkbtn|>this.Controls.Add
             fenbtn|>this.Controls.Add
             pgnbtn|>this.Controls.Add
+            addbtn|>this.Controls.Add
             //events
             bmlbl.Click.Add(fun _ -> lblClick())
             rslv.Click.Add(fun _ -> lvClick())
             bkbtn.Click.Add(fun _ -> bkClick())
             fenbtn.Click.Add(fun _ -> fenClick())
             pgnbtn.Click.Add(fun _ -> pgnClick())
+            addbtn.Click.Add(fun _ -> addClick())
     
     let frm = new FrmMain()
     
