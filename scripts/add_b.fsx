@@ -22,7 +22,7 @@ let rec doadd (idct:Map<string,FsChessPgn.Best.Bmresps>) (fnl:string list) =
         File.Delete(addfl)
     else
         let fen = fnl.Head
-        let ndct = Best.AddFen(dct,depth) fen
+        let ndct = Best.AddFen(idct,depth) fen
         let nfnl = fnl.Tail
         //save over addfl
         File.WriteAllLines(addfl,nfnl)
