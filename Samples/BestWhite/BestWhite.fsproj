@@ -45,4 +45,8 @@
     <ProjectReference Include="..\..\FsChessPgn\FsChessPgn.fsproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.4-beta.22203.2" />
+  </ItemGroup>
+
 </Project>
