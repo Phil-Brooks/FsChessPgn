@@ -135,4 +135,8 @@
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.4-beta.22203.2" />
+  </ItemGroup>
+
 </Project>

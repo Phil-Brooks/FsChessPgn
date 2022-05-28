@@ -16,4 +16,8 @@
     <Compile Include="Main.fs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="6.0.4-beta.22203.2" />
+  </ItemGroup>
+
 </Project>

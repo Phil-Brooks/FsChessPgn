@@ -3,8 +3,8 @@ open FsChess
 open System.IO
 
 let bestdictfl = @"D:\lc0\lc0black10.txt"
-let fixfen = "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 7"
-let fixbmstr = "Bf4"
+let fixfen = "rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1"
+let fixbmstr = "e6"
 let dct = Best.GetDict(bestdictfl)
 
 //STEP 1 - Replace the entry for the fixfen
@@ -23,11 +23,11 @@ let fixkey fen bmstr =
     //create copy of file
     let lns = File.ReadAllLines(bestdictfl)
     let len0 = lns.Length
-    File.Copy(bestdictfl,bestdictfl + "." + len0.ToString() + ".txt")
+    //File.Copy(bestdictfl,bestdictfl + "." + len0.ToString() + ".txt")
     //update
     Best.SaveDict(bestdictfl,ndct)
 
-//fixkey fixfen fixbmstr
+fixkey fixfen fixbmstr
 
 
 //STEP 2 - remove all redundant entries

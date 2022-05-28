@@ -2,10 +2,8 @@
 open FsChess
 
 let bestdictfl = @"D:\lc0\lc0black10.txt"
-//let bestdictfl = @"D:\lc0\42.txt"
 let dct = Best.GetDict(bestdictfl)
 let depth = 10
-//let depth = 8
 
 Leela.SetFol(@"D:\lc0")
 

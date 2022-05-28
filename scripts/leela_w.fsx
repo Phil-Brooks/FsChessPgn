@@ -2,7 +2,6 @@
 open FsChess
 
 let bestdictfl = @"D:\lc0\lc0white10.txt"
-//let bestdictfl = @"D:\lc0\lc0white10_split\308.txt"
 let dct = Best.GetDict(bestdictfl)
 let depth = 10
 

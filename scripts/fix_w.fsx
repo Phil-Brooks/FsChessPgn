@@ -3,8 +3,8 @@ open FsChess
 open System.IO
 
 let bestdictfl = @"D:\lc0\lc0white10.txt"
-let fixfen = "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 7"
-let fixbmstr = "Bf4"
+let fixfen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+let fixbmstr = "e3"
 let dct = Best.GetDict(bestdictfl)
 
 //STEP 1 - Replace the entry for the fixfen
