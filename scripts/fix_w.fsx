@@ -71,3 +71,5 @@ Best.SaveDict(bestdictfl,odct)
 Leela.SetFol(@"D:\lc0")
 let depth = 10
 
+
+

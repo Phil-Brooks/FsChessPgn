@@ -27,7 +27,7 @@ let fixkey fen bmstr =
     //update
     Best.SaveDict(bestdictfl,ndct)
 
-fixkey fixfen fixbmstr
+//fixkey fixfen fixbmstr
 
 
 //STEP 2 - remove all redundant entries
