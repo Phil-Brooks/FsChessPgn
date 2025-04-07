@@ -1,4 +1,4 @@
-#I @"D:\GitHub\FsChessPgn\FsChessPgn\bin\Debug\net6.0"
+#I @"D:\GitHub\FsChessPgn\FsChessPgn\bin\Debug\net9.0"
 #r "FsChessPgn.dll"
 open FsChess
 do
