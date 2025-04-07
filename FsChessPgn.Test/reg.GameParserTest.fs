@@ -60,13 +60,13 @@ type GameRegParserTest() =
     [<TestMethod>]
     member this.pGame_should_accept_a_standard_pgn_game() =
         let gml= Games.ReadFromString testGame1
-        Assert.AreEqual(1, gml.Length)
+        Assert.AreEqual<int>(1, gml.Length)
         let game = gml.Head
-        Assert.AreEqual("Tarrasch, Siegbert", game.WhitePlayer)
-        Assert.AreEqual("Mendelsohn, J.", game.BlackPlayer)
+        Assert.AreEqual<string>("Tarrasch, Siegbert", game.WhitePlayer)
+        Assert.AreEqual<string>("Mendelsohn, J.", game.BlackPlayer)
         Assert.AreEqual(null, game.BoardSetup)
-        Assert.AreEqual("Breslau", game.Event)
-        Assert.AreEqual("Breslau", game.Site)
+        Assert.AreEqual<string>("Breslau", game.Event)
+        Assert.AreEqual<string>("Breslau", game.Site)
         Assert.AreEqual(1879, game.Year.Value)
         Assert.IsFalse(game.Month.IsSome)
         Assert.IsFalse(game.Day.IsSome)
@@ -77,27 +77,27 @@ type GameRegParserTest() =
     [<TestMethod>]
     member this.pGame_should_accept_a_standard_pgn_game2() =
         let gml= Games.ReadFromString testGame2
-        Assert.AreEqual(1, gml.Length)
+        Assert.AreEqual<int>(1, gml.Length)
         let game = gml.Head
-        Assert.AreEqual("Braingames WCC", game.Event)
-        Assert.AreEqual("London ENG", game.Site)
+        Assert.AreEqual<string>("Braingames WCC", game.Event)
+        Assert.AreEqual<string>("London ENG", game.Site)
         Assert.AreEqual(2000, game.Year.Value)
         Assert.AreEqual(11, game.Month.Value)
-        Assert.AreEqual(2, game.Day.Value)
-        Assert.AreEqual("15", game.Round)
-        Assert.AreEqual("Kasparov,G", game.WhitePlayer)
-        Assert.AreEqual("Kramnik,V", game.BlackPlayer)
-        Assert.AreEqual("2849", game.WhiteElo)
-        Assert.AreEqual("2770", game.BlackElo)
-        Assert.AreEqual(1, game.AdditionalInfo.Count)
+        Assert.AreEqual<int>(2, game.Day.Value)
+        Assert.AreEqual<string>("15", game.Round)
+        Assert.AreEqual<string>("Kasparov,G", game.WhitePlayer)
+        Assert.AreEqual<string>("Kramnik,V", game.BlackPlayer)
+        Assert.AreEqual<string>("2849", game.WhiteElo)
+        Assert.AreEqual<string>("2770", game.BlackElo)
+        Assert.AreEqual<int>(1, game.AdditionalInfo.Count)
         Assert.AreEqual(77, game.MoveText.Length)
-        Assert.AreEqual("1/2-1/2", game.Result|>PgnWrite.ResultString)
+        Assert.AreEqual<string>("1/2-1/2", game.Result|>PgnWrite.ResultString)
         Assert.AreEqual(GameResult.Draw, game.Result)
 
     [<TestMethod>]
     member this.pGame_should_accept_a_standard_pgn_game3() =
         let gml= Games.ReadFromString testGame3
-        Assert.AreEqual(1, gml.Length)
+        Assert.AreEqual<int>(1, gml.Length)
         let game = gml.Head
         let setup= game.BoardSetup.Value
         Assert.AreEqual(Piece.BKing, setup.PieceAt.[Sq(FileE,Rank8)|>int])

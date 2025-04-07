@@ -35,29 +35,29 @@ type MoveTextEntryListTest()=
              HalfMoveEntry(None,false,mv,None);
              GameEndEntry(GameResult.Draw)]
 
-        Assert.AreEqual(2, mtel|>Game.FullMoveCount)
-        Assert.AreEqual(4, mtel|>Game.MoveCount)
+        Assert.AreEqual<int>(2, mtel|>Game.FullMoveCount)
+        Assert.AreEqual<int>(4, mtel|>Game.MoveCount)
 
     [<TestMethod>]
     member this.FullMoveCount_should_not_count_single_halfmoves() =
         let mtel =
             [HalfMoveEntry(None,false,mv,None)]
 
-        Assert.AreEqual(0, mtel|>Game.FullMoveCount)
-        Assert.AreEqual(1, mtel|>Game.MoveCount)
+        Assert.AreEqual<int>(0, mtel|>Game.FullMoveCount)
+        Assert.AreEqual<int>(1, mtel|>Game.MoveCount)
 
     [<TestMethod>]
     member this.FullMoveCount_should_count_pairwise_halfmoves() =
         let mtel =
             [HalfMoveEntry(None,false,mv,None);HalfMoveEntry(None,false,mv,None)]
 
-        Assert.AreEqual(1, mtel|>Game.FullMoveCount)
-        Assert.AreEqual(2, mtel|>Game.MoveCount)
+        Assert.AreEqual<int>(1, mtel|>Game.FullMoveCount)
+        Assert.AreEqual<int>(2, mtel|>Game.MoveCount)
 
     [<TestMethod>]
     member this.Moves_should_return_an_enumeration_of_moves() =
         let gml= Games.ReadFromString TestGameString
-        Assert.AreEqual(1, gml.Length)
+        Assert.AreEqual<int>(1, gml.Length)
         let game = gml.Head
 
         let mtel = game.MoveText

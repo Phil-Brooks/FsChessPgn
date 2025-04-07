@@ -37,7 +37,7 @@ type MoveFormatterTest()=
         let move = pMove.Create(MoveType.Simple,Sq(FileC,Rank5),PieceType.Rook|>Some)
         PgnWrite.Move(move, writer)
 
-        Assert.AreEqual("Foo Rc5", writer.ToString())
+        Assert.AreEqual<string>("Foo Rc5", writer.ToString())
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_castling_moves() =
@@ -45,127 +45,127 @@ type MoveFormatterTest()=
         let mv1 = pMove.CreateCastle(MoveType.CastleKingSide)
         let mv2 = pMove.CreateCastle(MoveType.CastleQueenSide)
 
-        Assert.AreEqual("O-O", PgnWrite.MoveStr(mv1))
-        Assert.AreEqual("O-O-O", PgnWrite.MoveStr(mv2))
+        Assert.AreEqual<string>("O-O", PgnWrite.MoveStr(mv1))
+        Assert.AreEqual<string>("O-O-O", PgnWrite.MoveStr(mv2))
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_simple_target_only_move() =
         let move = pMove.Create(MoveType.Simple,Sq(FileC,Rank5),PieceType.Rook|>Some)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Rc5", str)
+        Assert.AreEqual<string>("Rc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_simple_pawn_move() =
         let move = pMove.Create(MoveType.Simple,Sq(FileC,Rank5),None)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("c5", str)
+        Assert.AreEqual<string>("c5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_simple_pawn_move_with_explict_pawn() =
         let move = pMove.Create(MoveType.Simple,Sq(FileC,Rank5),PieceType.Pawn|>Some)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("c5", str)
+        Assert.AreEqual<string>("c5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_origin_to_target_move() =
         let move = pMove.CreateOrig(MoveType.Simple,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nb7c5", str)
+        Assert.AreEqual<string>("Nb7c5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_origin_file_to_target_move() =
         let move = pMove.CreateOrig(MoveType.Simple,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),None)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nbc5", str)
+        Assert.AreEqual<string>("Nbc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_origin_rank_to_target_move() =
         let move = pMove.CreateOrig(MoveType.Simple,Sq(FileC,Rank5),PieceType.Knight|>Some,None,Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("N7c5", str)
+        Assert.AreEqual<string>("N7c5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_capturing_move() =
         let move = pMove.Create(MoveType.Capture,Sq(FileC,Rank5),PieceType.Knight|>Some)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nxc5", str)
+        Assert.AreEqual<string>("Nxc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_pawn_capturing_move_with_origin_file_info() =
         let move = pMove.CreateOrig(MoveType.Capture,Sq(FileC,Rank6),None,Some(FileB),None)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("bxc6", str)
+        Assert.AreEqual<string>("bxc6", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_capturing_move_with_origin_square() =
         let move = pMove.CreateOrig(MoveType.Capture,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nb7xc5", str)
+        Assert.AreEqual<string>("Nb7xc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_Nb7xc5() =
         let move = pMove.CreateOrig(MoveType.Capture,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nb7xc5", str)
+        Assert.AreEqual<string>("Nb7xc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_exd5() =
         let move = pMove.CreateOrig(MoveType.Capture,Sq(FileD,Rank5),PieceType.Pawn|>Some,Some(FileE),None)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("exd5", str)
+        Assert.AreEqual<string>("exd5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_piece_promotion() =
         let move = pMove.CreateAll(MoveType.Simple,Sq(FileE,Rank8),PieceType.Pawn|>Some,None,None,PieceType.Queen|>Some,false,false,false)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("e8=Q", str)
+        Assert.AreEqual<string>("e8=Q", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_piece_promotion_after_capture() =
         let move = pMove.CreateAll(MoveType.Capture,Sq(FileE,Rank8),PieceType.Pawn|>Some,Some(FileD),Some(Rank7),PieceType.Queen|>Some,false,false,false)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("d7xe8=Q", str)
+        Assert.AreEqual<string>("d7xe8=Q", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_check_annotation() =
         let move = pMove.CreateAll(MoveType.Capture,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),Some(Rank7),None,true,false,false)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nb7xc5+", str)
+        Assert.AreEqual<string>("Nb7xc5+", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_any_annotation() =
         let move = pMove.CreateAll(MoveType.Capture,Sq(FileB,Rank8),PieceType.Rook|>Some,Some(FileB),Some(Rank1),None,false,false,true)
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Rb1xb8#", str)
+        Assert.AreEqual<string>("Rb1xb8#", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_ommit_redudant_piece_definition___N7c5_and_not_N7Nc5() =
         let move = pMove.CreateOrig(MoveType.Simple,Sq(FileC,Rank5),PieceType.Knight|>Some,None,Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("N7c5", str)
+        Assert.AreEqual<string>("N7c5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_include_captured_piece_even_if_its_the_same() =
         let move = pMove.CreateOrig(MoveType.Capture,Sq(FileC,Rank5),PieceType.Knight|>Some,Some(FileB),Some(Rank7))
         let str = PgnWrite.MoveStr(move)
 
-        Assert.AreEqual("Nb7xc5", str)
+        Assert.AreEqual<string>("Nb7xc5", str)
 
     [<TestMethod>]
     member this.PgnWrite_should_accept_TextWriter2() =
@@ -176,7 +176,7 @@ type MoveFormatterTest()=
         let entry = HalfMoveEntry(None,false,_move2,None)
         PgnWrite.MoveTextEntry(entry, writer)
 
-        Assert.AreEqual("Foo exd5 Nd4 ", writer.ToString())
+        Assert.AreEqual<string>("Foo exd5 Nd4 ", writer.ToString())
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_move_pair() =
@@ -184,7 +184,7 @@ type MoveFormatterTest()=
         let entry2 = HalfMoveEntry(None,false,_move2,None)
         let act = PgnWrite.MoveTextEntryStr(entry1) + PgnWrite.MoveTextEntryStr(entry2)
 
-        Assert.AreEqual("exd5 Nd4 ", act)
+        Assert.AreEqual<string>("exd5 Nd4 ", act)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_move_pair_with_number() =
@@ -192,27 +192,27 @@ type MoveFormatterTest()=
         let entry2 = HalfMoveEntry(None,false,_move2,None)
         let act = PgnWrite.MoveTextEntryStr(entry1) + PgnWrite.MoveTextEntryStr(entry2)
 
-        Assert.AreEqual("6. exd5 Nd4 ", act)
+        Assert.AreEqual<string>("6. exd5 Nd4 ", act)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_starting_single_move() =
         let entry = HalfMoveEntry(Some(6),false,_move1,None)
         let act = PgnWrite.MoveTextEntryStr (entry)
 
-        Assert.AreEqual("6. exd5 ", act)
+        Assert.AreEqual<string>("6. exd5 ", act)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_continued_single_move() =
         let entry = HalfMoveEntry(Some(6),true,_move2,None)
         let act = PgnWrite.MoveTextEntryStr (entry)
 
-        Assert.AreEqual("6... Nd4 ", act)
+        Assert.AreEqual<string>("6... Nd4 ", act)
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_GameEndEntry() =
-        Assert.AreEqual("1-0", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.WhiteWins)))
-        Assert.AreEqual("0-1", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.BlackWins)))
-        Assert.AreEqual("*", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.Open)))
+        Assert.AreEqual<string>("1-0", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.WhiteWins)))
+        Assert.AreEqual<string>("0-1", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.BlackWins)))
+        Assert.AreEqual<string>("*", PgnWrite.MoveTextEntryStr(GameEndEntry(GameResult.Open)))
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_CommentEntry() =
@@ -220,7 +220,7 @@ type MoveFormatterTest()=
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_NAGEntry() =
-        Assert.AreEqual("$5 ", PgnWrite.MoveTextEntryStr(NAGEntry(NAG.Speculative)))
+        Assert.AreEqual<string>("$5 ", PgnWrite.MoveTextEntryStr(NAGEntry(NAG.Speculative)))
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_RAVEntry() =
@@ -242,12 +242,12 @@ type MoveFormatterTest()=
         let entry7 = CommentEntry("game ends in win, whooot")
 
         let ml = [entry1;entry2;entry3;entry4;entry5a;entry5b;entry6;entry7]
-        Assert.AreEqual("37. Nxe5 $3 " + nl + "(" + nl + "{comment} 37. Ne3 )" + nl + "37... Rd8 38. h4 Rd5 1-0" + nl + "{game ends in win, whooot} ", PgnWrite.MoveTextStr(ml))
+        Assert.AreEqual<string>("37. Nxe5 $3 " + nl + "(" + nl + "{comment} 37. Ne3 )" + nl + "37... Rd8 38. h4 Rd5 1-0" + nl + "{game ends in win, whooot} ", PgnWrite.MoveTextStr(ml))
 
     [<TestMethod>]
     member this.ormat_should_deal_with_empty_move_text() =
         let ml = []
-        Assert.AreEqual("", PgnWrite.MoveTextStr(ml))
+        Assert.AreEqual<string>("", PgnWrite.MoveTextStr(ml))
 
     [<TestMethod>]
     member this.PgnWrite_should_accept_TextWriter3() =

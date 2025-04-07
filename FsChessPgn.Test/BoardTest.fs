@@ -14,13 +14,13 @@ type BoardTest()=
     [<TestMethod>]
     member this.Board_SquareAttacked() =
         let pas = brd1|>Board.SquareAttacked D2 Player.White
-        Assert.AreEqual(true,pas)
+        Assert.AreEqual<bool>(true,pas)
 
     [<TestMethod>]
     member this.Board_MoveApply() =
         let brd2 = brd1|>Board.MoveApply mv1
         let str = brd2|>Board.ToStr
-        Assert.AreEqual("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",str)
+        Assert.AreEqual<string>("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",str)
 
     [<TestMethod>]
     member this.Board_MoveApply2() =
@@ -29,18 +29,18 @@ type BoardTest()=
         let san = "Rxa8"
         let brd2 = brd|>Board.PushSAN san
         let str = brd2|>Board.ToStr
-        Assert.AreEqual("Rnbqkbnr/4pppp/8/1p6/2pPP3/8/1P3PPP/2BQKBNR b Kk - 0 8",str)
+        Assert.AreEqual<string>("Rnbqkbnr/4pppp/8/1p6/2pPP3/8/1P3PPP/2BQKBNR b Kk - 0 8",str)
 
     [<TestMethod>]
     member this.Board_IsCheck() =
         let ic = brd1|>Board.IsChk
         let ic2 = brd1|>Board.IsChck Player.White
-        Assert.AreEqual(false,ic)
-        Assert.AreEqual(false,ic2)
+        Assert.AreEqual<bool>(false,ic)
+        Assert.AreEqual<bool>(false,ic2)
 
     [<TestMethod>]
     member this.Board_FromFEN() =
         let fen = FEN.Parse "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"
         let brd2 = Board.FromFEN fen
         let str = brd2|>Board.ToStr
-        Assert.AreEqual("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",str)
+        Assert.AreEqual<string>("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",str)

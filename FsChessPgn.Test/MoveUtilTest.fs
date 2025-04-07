@@ -17,15 +17,15 @@ type MoveUtilTest()=
 
     [<TestMethod>]
     member this.MoveUtil_Desc() =
-        Assert.AreEqual("e2e4",mv1|>MoveUtil.toUci)
+        Assert.AreEqual<string>("e2e4",mv1|>MoveUtil.toUci)
 
     [<TestMethod>]
     member this.MoveUtil_DescBd() =
-        Assert.AreEqual("e4",mv1|>MoveUtil.toPgn brd1)
+        Assert.AreEqual<string>("e4",mv1|>MoveUtil.toPgn brd1)
 
     [<TestMethod>]
     member this.MoveUtil_Descs() =
-        Assert.AreEqual("1. e4 ",MoveUtil.Descs [mv1] brd1 true)
+        Assert.AreEqual<string>("1. e4 ",MoveUtil.Descs [mv1] brd1 true)
 
     [<TestMethod>]
     member this.MoveUtil_FindMv() =

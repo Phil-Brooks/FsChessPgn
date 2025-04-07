@@ -206,7 +206,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
         let last = ngm1.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
-        Assert.AreEqual("4rk2/p1p2ppQ/3q4/2p2N2/p7/2P5/PP2bPPP/4R1K1 b - - 3 24",lastfen)
+        Assert.AreEqual<string>("4rk2/p1p2ppQ/3q4/2p2N2/p7/2P5/PP2bPPP/4R1K1 b - - 3 24",lastfen)
 
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game2() =
@@ -215,7 +215,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
         let last = ngm2.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
-        Assert.AreEqual("6k1/4b3/p3r1p1/1pprN2p/5P1P/1P4P1/P1R3K1/2R5 w - - 1 39",lastfen)
+        Assert.AreEqual<string>("6k1/4b3/p3r1p1/1pprN2p/5P1P/1P4P1/P1R3K1/2R5 w - - 1 39",lastfen)
 
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game3() =
@@ -224,7 +224,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
         let last = ngm3.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
-        Assert.AreEqual("R7/P6k/8/4K2p/4P3/r5P1/8/8 b - - 0 73",lastfen)
+        Assert.AreEqual<string>("R7/P6k/8/4K2p/4P3/r5P1/8/8 b - - 0 73",lastfen)
 
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game4() =
@@ -233,4 +233,4 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
         let last = ngm4.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
-        Assert.AreEqual("3b4/5p1k/7p/6p1/5B2/5P1P/5PK1/8 w - - 0 44",lastfen)
+        Assert.AreEqual<string>("3b4/5p1k/7p/6p1/5B2/5P1P/5PK1/8 w - - 0 44",lastfen)
