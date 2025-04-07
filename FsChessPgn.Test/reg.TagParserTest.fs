@@ -23,16 +23,16 @@ type TagRegParserTests() =
         let gml = Games.ReadFromString "[Date \"2013.05.15\"]"
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
-        Assert.AreEqual(2013, gm.Year.Value)
-        Assert.AreEqual(5, gm.Month.Value)
-        Assert.AreEqual(15, gm.Day.Value)
+        Assert.AreEqual<int>(2013, gm.Year.Value)
+        Assert.AreEqual<int>(5, gm.Month.Value)
+        Assert.AreEqual<int>(15, gm.Day.Value)
 
     [<TestMethod>]
     member this.pTag_should_accept_only_the_year_as_date() =
         let gml = Games.ReadFromString "[Date \"2013\"]"
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
-        Assert.AreEqual(2013, gm.Year.Value)
+        Assert.AreEqual<int>(2013, gm.Year.Value)
         Assert.AreEqual<bool>(false, gm.Month.IsSome)
         Assert.AreEqual<bool>(false, gm.Day.IsSome)
 
@@ -82,7 +82,7 @@ type TagRegParserTests() =
 
         Assert.AreEqual(CstlFlgs.All, setup.CastleRights)
 
-        Assert.AreEqual(OUTOFBOUNDS, setup.EnPassant)
+        Assert.AreEqual<Square>(OUTOFBOUNDS, setup.EnPassant)
 
         Assert.AreEqual<int>(0, setup.Fiftymove)
         Assert.AreEqual<int>(1, setup.Fullmove)
@@ -106,7 +106,7 @@ type TagRegParserTests() =
 
         Assert.AreEqual(CstlFlgs.WhiteShort|||CstlFlgs.BlackLong, setup.CastleRights)
 
-        Assert.AreEqual(C6, setup.EnPassant)
+        Assert.AreEqual<Square>(C6, setup.EnPassant)
 
         Assert.AreEqual<int>(1, setup.Fiftymove)
         Assert.AreEqual<int>(2, setup.Fullmove)

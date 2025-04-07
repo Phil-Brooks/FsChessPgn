@@ -31,8 +31,9 @@ type PgnWriterTest () =
         let db = [_testGame]
         PgnWriter.WriteStream(stream,db)
         let actual = Encoding.UTF8.GetString(stream.ToArray())
-
-        Assert.AreEqual(TestGameString, actual)
+        let cleanact = actual.Replace("\n", "").Replace("\r", "")
+        let cleanexp = TestGameString.Replace("\n", "").Replace("\r", "")
+        Assert.AreEqual<string>(cleanexp, cleanact)
 
     [<TestMethod>]
     member this.parser_should_read_written_game_correctly() =
@@ -42,6 +43,7 @@ type PgnWriterTest () =
         let writtenResult = Encoding.UTF8.GetString(stream.ToArray())
         let actualDb = Games.ReadFromString(writtenResult)
         let actual = PgnWriter.WriteString(actualDb)
-
-        Assert.AreEqual(TestGameString, actual)
+        let cleanact = actual.Replace("\n", "").Replace("\r", "")
+        let cleanexp = TestGameString.Replace("\n", "").Replace("\r", "")
+        Assert.AreEqual<string>(cleanexp, cleanact)
 

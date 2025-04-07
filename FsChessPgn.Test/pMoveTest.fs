@@ -34,8 +34,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(E1,mv1|>Move.From)
-        Assert.AreEqual(G1,mv1|>Move.To)
+        Assert.AreEqual<Square>(E1,mv1|>Move.From)
+        Assert.AreEqual<Square>(G1,mv1|>Move.To)
         Assert.AreEqual(Piece.WKing,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(true,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.King,mv1|>Move.MovingPieceType)
@@ -57,8 +57,8 @@ type pMoveTest()=
         let (HalfMoveEntry (mn,ic,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(E2,mv1|>Move.From)
-        Assert.AreEqual(E4,mv1|>Move.To)
+        Assert.AreEqual<Square>(E2,mv1|>Move.From)
+        Assert.AreEqual<Square>(E4,mv1|>Move.To)
         Assert.AreEqual(Piece.WPawn,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(true,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Pawn,mv1|>Move.MovingPieceType)
@@ -80,8 +80,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(G1,mv1|>Move.From)
-        Assert.AreEqual(F3,mv1|>Move.To)
+        Assert.AreEqual<Square>(G1,mv1|>Move.From)
+        Assert.AreEqual<Square>(F3,mv1|>Move.To)
         Assert.AreEqual(Piece.WKnight,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(true,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Knight,mv1|>Move.MovingPieceType)
@@ -103,8 +103,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(F1,mv1|>Move.From)
-        Assert.AreEqual(B5,mv1|>Move.To)
+        Assert.AreEqual<Square>(F1,mv1|>Move.From)
+        Assert.AreEqual<Square>(B5,mv1|>Move.To)
         Assert.AreEqual(Piece.WBishop,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(true,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Bishop,mv1|>Move.MovingPieceType)
@@ -126,8 +126,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(F1,mv1|>Move.From)
-        Assert.AreEqual(E1,mv1|>Move.To)
+        Assert.AreEqual<Square>(F1,mv1|>Move.From)
+        Assert.AreEqual<Square>(E1,mv1|>Move.To)
         Assert.AreEqual(Piece.WRook,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(true,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Rook,mv1|>Move.MovingPieceType)
@@ -149,8 +149,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(D8,mv1|>Move.From)
-        Assert.AreEqual(F6,mv1|>Move.To)
+        Assert.AreEqual<Square>(D8,mv1|>Move.From)
+        Assert.AreEqual<Square>(F6,mv1|>Move.To)
         Assert.AreEqual(Piece.BQueen,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(false,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Queen,mv1|>Move.MovingPieceType)
@@ -172,8 +172,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(G8,mv1|>Move.From)
-        Assert.AreEqual(F8,mv1|>Move.To)
+        Assert.AreEqual<Square>(G8,mv1|>Move.From)
+        Assert.AreEqual<Square>(F8,mv1|>Move.To)
         Assert.AreEqual(Piece.BKing,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(false,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.King,mv1|>Move.MovingPieceType)
@@ -195,8 +195,8 @@ type pMoveTest()=
         let (HalfMoveEntry (_,_,mv,_)) = mvte1
         let amv=mv|>pMove.ToaMove bd 1
         let mv1=amv.Mv
-        Assert.AreEqual(F8,mv1|>Move.From)
-        Assert.AreEqual(E8,mv1|>Move.To)
+        Assert.AreEqual<Square>(F8,mv1|>Move.From)
+        Assert.AreEqual<Square>(E8,mv1|>Move.To)
         Assert.AreEqual(Piece.BRook,mv1|>Move.MovingPiece)
         Assert.AreEqual<bool>(false,mv1|>Move.IsW)
         Assert.AreEqual(PieceType.Rook,mv1|>Move.MovingPieceType)

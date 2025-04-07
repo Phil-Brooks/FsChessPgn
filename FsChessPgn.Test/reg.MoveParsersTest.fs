@@ -20,8 +20,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_pawn_move() =
@@ -34,8 +34,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(D5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(D5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_castleK() =
@@ -47,8 +47,8 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.CastleKingSide,mv.Mtype)
-        Assert.AreEqual(OUTOFBOUNDS, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(OUTOFBOUNDS, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_castleQ() =
@@ -60,8 +60,8 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.CastleQueenSide,mv.Mtype)
-        Assert.AreEqual(OUTOFBOUNDS, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(OUTOFBOUNDS, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_pawn_capture() =
@@ -73,9 +73,9 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Capture,mv.Mtype)
-        Assert.AreEqual(D4, mv.TargetSquare)
-        Assert.AreEqual(FileC, mv.OriginFile.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(D4, mv.TargetSquare)
+        Assert.AreEqual<File>(FileC, mv.OriginFile.Value)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_piece_capture() =
@@ -87,9 +87,9 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Capture,mv.Mtype)
-        Assert.AreEqual(F3, mv.TargetSquare)
+        Assert.AreEqual<Square>(F3, mv.TargetSquare)
         Assert.AreEqual(PieceType.Bishop, mv.Piece.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_ambiguous_file() =
@@ -101,10 +101,10 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
-        Assert.AreEqual(D7, mv.TargetSquare)
+        Assert.AreEqual<Square>(D7, mv.TargetSquare)
         Assert.AreEqual(PieceType.Knight, mv.Piece.Value)
-        Assert.AreEqual(FileF, mv.OriginFile.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<File>(FileF, mv.OriginFile.Value)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
         
     [<TestMethod>]
     member this.parse_ambiguous_rank() =
@@ -116,10 +116,10 @@ type MoveRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
-        Assert.AreEqual(D5, mv.TargetSquare)
+        Assert.AreEqual<Square>(D5, mv.TargetSquare)
         Assert.AreEqual(PieceType.Rook, mv.Piece.Value)
-        Assert.AreEqual(Rank3, mv.OriginRank.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Rank>(Rank3, mv.OriginRank.Value)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_prom() =
@@ -132,9 +132,9 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(D8, mv.TargetSquare)
+        Assert.AreEqual<Square>(D8, mv.TargetSquare)
         Assert.AreEqual(PieceType.Queen, mv.PromotedPiece.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_prom_cap() =
@@ -147,9 +147,9 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Capture,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(D8, mv.TargetSquare)
+        Assert.AreEqual<Square>(D8, mv.TargetSquare)
         Assert.AreEqual(PieceType.Queen, mv.PromotedPiece.Value)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_check_move() =
@@ -162,8 +162,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_doublecheck_move() =
@@ -176,8 +176,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_mate_move() =
@@ -190,8 +190,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_good_move() =
@@ -204,8 +204,8 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mv|>PgnWrite.MoveStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mv|>PgnWrite.MoveStr)
 
     [<TestMethod>]
     member this.parse_simple_blunder_move() =
@@ -218,9 +218,9 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
         let mvstr = mv|>PgnWrite.MoveStr
-        Assert.AreEqual(s,mvstr)
+        Assert.AreEqual<string>(s,mvstr)
 
     [<TestMethod>]
     member this.parse_simple_interesting_move() =
@@ -233,6 +233,6 @@ type MoveRegParserTest() =
         let (HalfMoveEntry (_,_,mv,_)) = mt.Head
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
         let mvstr = mv|>PgnWrite.MoveStr
-        Assert.AreEqual(s,mvstr)
+        Assert.AreEqual<string>(s,mvstr)

@@ -202,7 +202,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game1() =
         let ngm1 = gm1|>Game.SetaMoves
-        Assert.AreEqual(gm1.MoveText.Length,ngm1.MoveText.Length)
+        Assert.AreEqual<int>(gm1.MoveText.Length,ngm1.MoveText.Length)
         let last = ngm1.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
@@ -211,7 +211,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game2() =
         let ngm2 = gm2|>Game.SetaMoves
-        Assert.AreEqual(gm2.MoveText.Length,ngm2.MoveText.Length)
+        Assert.AreEqual<int>(gm2.MoveText.Length,ngm2.MoveText.Length)
         let last = ngm2.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
@@ -220,7 +220,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game3() =
         let ngm3 = gm3|>Game.SetaMoves
-        Assert.AreEqual(gm3.MoveText.Length,ngm3.MoveText.Length)
+        Assert.AreEqual<int>(gm3.MoveText.Length,ngm3.MoveText.Length)
         let last = ngm3.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr
@@ -229,7 +229,7 @@ gxf3 Rc3 39. Kg2 g5 40. e6 Bb6 41. Rxd3 Rxd3 42. e7 Rd8 43. exd8=Q Bxd8
     [<TestMethod>]
     member this.Game_should_accept_a_standard_pgn_game4() =
         let ngm4 = gm4|>Game.SetaMoves
-        Assert.AreEqual(gm4.MoveText.Length,ngm4.MoveText.Length)
+        Assert.AreEqual<int>(gm4.MoveText.Length,ngm4.MoveText.Length)
         let last = ngm4.MoveText|>List.rev|>List.tail|>List.head
         let (HalfMoveEntry(_,_,_,lastamv)) = last
         let lastfen = lastamv.Value.PostBrd|>Board.ToStr

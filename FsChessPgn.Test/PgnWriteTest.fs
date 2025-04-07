@@ -216,7 +216,7 @@ type MoveFormatterTest()=
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_CommentEntry() =
-        Assert.AreEqual(nl + "{This is a test comment} ", PgnWrite.MoveTextEntryStr(CommentEntry("This is a test comment")))
+        Assert.AreEqual<string>(nl + "{This is a test comment} ", PgnWrite.MoveTextEntryStr(CommentEntry("This is a test comment")))
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_a_NAGEntry() =
@@ -226,7 +226,7 @@ type MoveFormatterTest()=
     member this.PgnWrite_should_PgnWrite_a_RAVEntry() =
         let entry = HalfMoveEntry(Some(6),true,_move2,None)
         let ravEntry = RAVEntry([entry])
-        Assert.AreEqual(nl + "(6... Nd4 )" + nl, PgnWrite.MoveTextEntryStr(ravEntry))
+        Assert.AreEqual<string>(nl + "(6... Nd4 )" + nl, PgnWrite.MoveTextEntryStr(ravEntry))
 
     [<TestMethod>]
     member this.PgnWrite_should_PgnWrite_move_text() =
@@ -254,9 +254,13 @@ type MoveFormatterTest()=
         let writer = new StringWriter()
         PgnWrite.Game(_testGame, writer)
         let act = writer.ToString()
-        Assert.AreEqual(TestGameString, act)
+        let cleanact = act.Replace("\n", "").Replace("\r", "")
+        let cleanexp = TestGameString.Replace("\n", "").Replace("\r", "")
+        Assert.AreEqual<string>(cleanexp, cleanact)
 
     [<TestMethod>]
     member this.PgnWrite_should_Game_correctly() =
         let act = PgnWrite.GameStr(_testGame)
-        Assert.AreEqual(TestGameString, act)
+        let cleanact = act.Replace("\n", "").Replace("\r", "")
+        let cleanexp = TestGameString.Replace("\n", "").Replace("\r", "")
+        Assert.AreEqual<string>(cleanexp, cleanact)

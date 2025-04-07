@@ -67,10 +67,10 @@ type GameRegParserTest() =
         Assert.AreEqual(null, game.BoardSetup)
         Assert.AreEqual<string>("Breslau", game.Event)
         Assert.AreEqual<string>("Breslau", game.Site)
-        Assert.AreEqual(1879, game.Year.Value)
+        Assert.AreEqual<int>(1879, game.Year.Value)
         Assert.IsFalse(game.Month.IsSome)
         Assert.IsFalse(game.Day.IsSome)
-        Assert.AreEqual(48, game.MoveText.Length) //24 move pairs and finish tag
+        Assert.AreEqual<int>(48, game.MoveText.Length) //24 move pairs and finish tag
         let (GameEndEntry gr) = game.MoveText.[47]
         Assert.AreEqual(GameResult.WhiteWins, gr)
 
@@ -81,8 +81,8 @@ type GameRegParserTest() =
         let game = gml.Head
         Assert.AreEqual<string>("Braingames WCC", game.Event)
         Assert.AreEqual<string>("London ENG", game.Site)
-        Assert.AreEqual(2000, game.Year.Value)
-        Assert.AreEqual(11, game.Month.Value)
+        Assert.AreEqual<int>(2000, game.Year.Value)
+        Assert.AreEqual<int>(11, game.Month.Value)
         Assert.AreEqual<int>(2, game.Day.Value)
         Assert.AreEqual<string>("15", game.Round)
         Assert.AreEqual<string>("Kasparov,G", game.WhitePlayer)
@@ -90,7 +90,7 @@ type GameRegParserTest() =
         Assert.AreEqual<string>("2849", game.WhiteElo)
         Assert.AreEqual<string>("2770", game.BlackElo)
         Assert.AreEqual<int>(1, game.AdditionalInfo.Count)
-        Assert.AreEqual(77, game.MoveText.Length)
+        Assert.AreEqual<int>(77, game.MoveText.Length)
         Assert.AreEqual<string>("1/2-1/2", game.Result|>PgnWrite.ResultString)
         Assert.AreEqual(GameResult.Draw, game.Result)
 
@@ -105,7 +105,7 @@ type GameRegParserTest() =
         Assert.AreEqual(Piece.WKing, setup.PieceAt.[Sq(FileE,Rank1)|>int])
         Assert.AreEqual(Player.White, setup.WhosTurn)
         Assert.AreEqual(CstlFlgs.EMPTY, setup.CastleRights)
-        Assert.AreEqual(OUTOFBOUNDS, setup.EnPassant)
-        Assert.AreEqual(5, setup.Fiftymove)
-        Assert.AreEqual(39, setup.Fullmove)
+        Assert.AreEqual<Square>(OUTOFBOUNDS, setup.EnPassant)
+        Assert.AreEqual<int>(5, setup.Fiftymove)
+        Assert.AreEqual<int>(39, setup.Fullmove)
 

@@ -23,8 +23,8 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mt.Head|>PgnWrite.MoveTextEntryStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt.Head|>PgnWrite.MoveTextEntryStr)
 
     [<TestMethod>]
     member this.parse_simple_white_move() =
@@ -35,12 +35,12 @@ type MoveSeriesRegParserTest() =
         let mt = gm.MoveText
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
-        Assert.AreEqual(12,mn.Value)
+        Assert.AreEqual<int>(12,mn.Value)
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mt.Head|>PgnWrite.MoveTextEntryStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt.Head|>PgnWrite.MoveTextEntryStr)
 
     [<TestMethod>]
     member this.parse_simple_cont_move() =
@@ -51,12 +51,12 @@ type MoveSeriesRegParserTest() =
         let mt = gm.MoveText
         Assert.AreEqual<int>(1, mt.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
-        Assert.AreEqual(12,mn.Value)
+        Assert.AreEqual<int>(12,mn.Value)
         Assert.AreEqual<bool>(true,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(F5, mv.TargetSquare)
-        Assert.AreEqual(s,mt.Head|>PgnWrite.MoveTextEntryStr)
+        Assert.AreEqual<Square>(F5, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt.Head|>PgnWrite.MoveTextEntryStr)
 
     [<TestMethod>]
     member this.parse_simple_moves() =
@@ -65,14 +65,14 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(6, mt.Length)
+        Assert.AreEqual<int>(6, mt.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
         Assert.AreEqual<int>(1,mn.Value)
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(E4, mv.TargetSquare)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<Square>(E4, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_split_moves() =
@@ -81,13 +81,13 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(6, mt.Length)
+        Assert.AreEqual<int>(6, mt.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
         Assert.AreEqual<int>(1,mn.Value)
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(E4, mv.TargetSquare)
+        Assert.AreEqual<Square>(E4, mv.TargetSquare)
         //Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
@@ -100,7 +100,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (CommentEntry (str)) = mt.Head
         Assert.AreEqual<string>("this is a comment",str)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_single_line_comment() =
@@ -110,7 +110,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(7, mt.Length)
+        Assert.AreEqual<int>(7, mt.Length)
         let (CommentEntry (str)) = mt.[5]
         Assert.AreEqual<string>("This opening is called the Ruy Lopez.",str)
         Assert.AreEqual<string>("1. e4 e5 2. Nf3 Nc6 3. Bb5 " + nl + "{This opening is called the Ruy Lopez.} 3... a6 ",mt|>PgnWrite.MoveTextStr)
@@ -124,7 +124,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(8, mt.Length)
+        Assert.AreEqual<int>(8, mt.Length)
         let (CommentEntry (str)) = mt.[5]
         Assert.AreEqual<string>("This opening is called the Ruy Lopez.",str)
         let (CommentEntry (str)) = mt.[6]
@@ -141,7 +141,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (GameEndEntry(res)) = mt.Head
         Assert.AreEqual(GameResult.Draw,res)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_win() =
@@ -153,7 +153,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (GameEndEntry(res)) = mt.Head
         Assert.AreEqual(GameResult.WhiteWins,res)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_loss() =
@@ -165,7 +165,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (GameEndEntry(res)) = mt.Head
         Assert.AreEqual(GameResult.BlackWins,res)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_unknown() =
@@ -177,7 +177,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, mt.Length)
         let (GameEndEntry(res)) = mt.Head
         Assert.AreEqual(GameResult.Open,res)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_pre_comment() =
@@ -195,8 +195,8 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(E4, mv.TargetSquare)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<Square>(E4, mv.TargetSquare)
+        Assert.AreEqual<string>("\r" + s,mt|>PgnWrite.MoveTextStr)
 
 
     [<TestMethod>]
@@ -206,7 +206,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(5, mt.Length)
+        Assert.AreEqual<int>(5, mt.Length)
         let (CommentEntry(str)) = mt.[1]
         Assert.AreEqual<string>("[%emt 0.0]",str)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
@@ -214,8 +214,8 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(E4, mv.TargetSquare)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<Square>(E4, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_NAG() =
@@ -224,7 +224,7 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(5, mt.Length)
+        Assert.AreEqual<int>(5, mt.Length)
         let (NAGEntry(cd)) = mt.[2]
         Assert.AreEqual(NAG.Questionable,cd)
         let (HalfMoveEntry (mn,ic,mv,_)) = mt.Head
@@ -232,10 +232,10 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Pawn, mv.Piece.Value)
-        Assert.AreEqual(E4, mv.TargetSquare)
+        Assert.AreEqual<Square>(E4, mv.TargetSquare)
         let (NAGEntry(cd)) = mt.[4]
         Assert.AreEqual(NAG.Speculative,cd)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_RAV() =
@@ -246,16 +246,16 @@ type MoveSeriesRegParserTest() =
         let mt = gm.MoveText
         Assert.AreEqual<int>(4, mt.Length)
         let (RAVEntry(mtel)) = mt.[2]
-        Assert.AreEqual(5,mtel.Length)
+        Assert.AreEqual<int>(5,mtel.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mtel.Head
-        Assert.AreEqual(6,mn.Value)
+        Assert.AreEqual<int>(6,mn.Value)
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Bishop, mv.Piece.Value)
-        Assert.AreEqual(D3, mv.TargetSquare)
+        Assert.AreEqual<Square>(D3, mv.TargetSquare)
         let (CommentEntry(str)) = mtel.[4]
         Assert.AreEqual<string>(" - B14 ",str)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
 
     [<TestMethod>]
     member this.parse_nested_RAV() =
@@ -264,22 +264,22 @@ type MoveSeriesRegParserTest() =
         Assert.AreEqual<int>(1, gml.Length)
         let gm = gml.Head
         let mt = gm.MoveText
-        Assert.AreEqual(3, mt.Length)
+        Assert.AreEqual<int>(3, mt.Length)
         let (RAVEntry(mtel)) = mt.[1]
-        Assert.AreEqual(5,mtel.Length)
+        Assert.AreEqual<int>(5,mtel.Length)
         let (HalfMoveEntry (mn,ic,mv,_)) = mtel.Head
-        Assert.AreEqual(6,mn.Value)
+        Assert.AreEqual<int>(6,mn.Value)
         Assert.AreEqual<bool>(false,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Bishop, mv.Piece.Value)
-        Assert.AreEqual(D3, mv.TargetSquare)
+        Assert.AreEqual<Square>(D3, mv.TargetSquare)
         let (RAVEntry(m2)) = mtel.[4]
         let (HalfMoveEntry (mn,ic,mv,_)) = m2.Head
-        Assert.AreEqual(7,mn.Value)
+        Assert.AreEqual<int>(7,mn.Value)
         Assert.AreEqual<bool>(true,ic)
         Assert.AreEqual<MoveType>(MoveType.Simple,mv.Mtype)
         Assert.AreEqual(PieceType.Queen, mv.Piece.Value)
-        Assert.AreEqual(A4, mv.TargetSquare)
-        Assert.AreEqual(s,mt|>PgnWrite.MoveTextStr)
+        Assert.AreEqual<Square>(A4, mv.TargetSquare)
+        Assert.AreEqual<string>(s,mt|>PgnWrite.MoveTextStr)
  
        

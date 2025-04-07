@@ -12,14 +12,14 @@ type FileTestCases () =
     [<TestMethod>]
     member this.EmptyFile() =
         let db = Games.ReadFromFile(TestFolder + "empty-file.pgn")
-        Assert.AreEqual(db|>Seq.length,0)
+        Assert.AreEqual<int>(db|>Seq.length,0)
 
     [<TestMethod>]
     member this.SimpleGame() =
         let db = Games.ReadFromFile(TestFolder + "simple-game.pgn")
-        Assert.AreEqual(db|>Seq.length,1)
+        Assert.AreEqual<int>(db|>Seq.length,1)
 
     [<TestMethod>]
     member this.TimeAnnotatedGames() =
         let db = Games.ReadFromFile(TestFolder + "time-annotated-games.pgn")
-        Assert.AreEqual(db|>Seq.length,4)
+        Assert.AreEqual<int>(db|>Seq.length,4)

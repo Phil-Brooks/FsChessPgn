@@ -63,6 +63,6 @@ type MoveTextEntryListTest()=
         let mtel = game.MoveText
         let mvs = mtel|>Game.GetMoves
 
-        Assert.AreEqual(23, mtel|>Game.FullMoveCount)
-        Assert.AreEqual(47, mtel|>Game.MoveCount)
-        Assert.AreEqual(47, mvs.Length)
+        Assert.AreEqual<int>(23, mtel|>Game.FullMoveCount)
+        Assert.AreEqual<int>(47, mtel|>Game.MoveCount)
+        Assert.AreEqual<int>(47, mvs.Length)
